@@ -10,6 +10,8 @@ angular.module('conFusion.controllers',[])
           //$scope.$on('$ionicView.enter', function(e) {
           //});
 
+       
+
           // Form data for the login modal
           $scope.loginData = $localStorage.getObject('userInfo', '{}');
 
@@ -254,7 +256,7 @@ angular.module('conFusion.controllers',[])
             $scope.baseURL = baseURL;
             $scope.shouldShowDelete = false;
 
-            $scope.favorites = $localStorage.getObject('favorites',[]);
+            $ccope.favorites = $localStorage.getObject('favorites',[]);
 
             $scope.dishes = dishes;
 
@@ -300,6 +302,7 @@ angular.module('conFusion.controllers',[])
                 return out;
 
             }})
+     
 
                 
 

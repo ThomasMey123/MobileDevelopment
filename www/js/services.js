@@ -28,11 +28,7 @@ angular.module('conFusion.services',['ngResource'])
             var favFac = {};
             var favorites =[];
 
-            favFac.setFavorites = function(favs){
-                favorites = favs;
-            }
-
-            favFac.addToFavorites = function (index) {
+                favFac.addToFavorites = function (index) {
                 for (var i = 0; i < favorites.length; i++) {
                     if (favorites[i].id == index)
                         return;
