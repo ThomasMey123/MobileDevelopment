@@ -58,16 +58,17 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
         templateUrl: 'templates/home.html',
         controller: 'IndexController',
         resolve: {
-            dishes: ['menuFactory', function( menuFactory){
-                return menuFactory.query();
+            dish: ['menuFactory', function( menuFactory){
+                return menuFactory.get({id:0});
             }],
-            leaders:  ['corporateFactory', function(corporateFactory){
-                return corporateFactory.query();
+            promotion:['promotionFactory', function(promotionFactory){
+              return promotionFactory.get({id:0});
             }],
-            favorites: ['favoriteFactory', function(favoriteFactory) {
-                return favoriteFactory.getFavorites();
-            }]              
-        }      
+            leader:['corporateFactory', function(corporateFactory){
+              return corporateFactory.get({id:3});
+            }]
+            
+        }
       }
     }
   })
@@ -78,14 +79,14 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
         'mainContent': {
           templateUrl: 'templates/aboutus.html',
           controller: 'AboutController',
-            resolve: {
-              leaders:  ['corporateFactory', function(corporateFactory){
-                  return corporateFactory.query();
+          resolve: {
+              leaders:['corporateFactory', function(corporateFactory){
+                return corporateFactory.query();
               }]
+          }
         }
       }
-    }
-  })
+    })
   .state('app.contactus', {
       url: '/contactus',
       views: {
@@ -95,7 +96,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
       }
     })    
     
-  .state('app.menu', {
+    .state('app.menu', {
       url: '/menu',
       views: {
         'mainContent': {
