@@ -179,7 +179,6 @@ angular.module('conFusion.controllers',[])
             $scope.addFavorite = function () {
                 console.log("index is " + $scope.dish);
                 favoriteFactory.addToFavorites($scope.dish.id);
-                $localStorage.storeObject('favorites', favoriteFactory.getFavorites());
                 
                 $scope.closePopover();
             }       
@@ -252,11 +251,11 @@ angular.module('conFusion.controllers',[])
             
                 }])
 
-        .controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout','$localStorage', function ($scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout,$localStorage) {
+        .controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ($scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
             $scope.baseURL = baseURL;
             $scope.shouldShowDelete = false;
 
-            $ccope.favorites = $localStorage.getObject('favorites',[]);
+            $scope.favorites = favorites;
 
             $scope.dishes = dishes;
 
@@ -276,9 +275,6 @@ angular.module('conFusion.controllers',[])
                     if (res) {
                         console.log('Ok to delete');
                         favoriteFactory.deleteFromFavorites(index);
-                        $localStorage.storeObject('favorites', favoriteFactory.getFavorites());
-
-
                     } else {
                         console.log('Canceled delete');
                     }
